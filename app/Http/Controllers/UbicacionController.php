@@ -15,7 +15,7 @@ class UbicacionController extends Controller
     public function index()
     {
         $ubicaciones = Ubicacion::all();
-        return view('ubicacion.index',['ubicaiones'=>$ubicaciones]);
+        return view('ubicacion.index',['ubicaciones'=>$ubicaciones]);
     }
 
     /**
@@ -38,13 +38,13 @@ class UbicacionController extends Controller
     {
         $request->validate([
             'ubicacion'=>'required',
-            'capadicad' => 'required'
+            'capacidad' => 'required'
         ]);
         $ubicacion = new Ubicacion;
-        $ubicacion->nombreUbicacion = $request->ubicaciones;
-        $ubicacion->capacidadUbicacion = $request->capacidades;
+        $ubicacion->nombreUbicacion = $request->ubicacion;
+        $ubicacion->capacidadUbicacion = $request->capacidad;
         $ubicacion->save();
-        return redirect()->route('ubicacion')->with('success','Ubicacion Creado');
+        return redirect()->route('ubicacion.index')->with('success','Ubicacion Creado');
     }
 
     /**
@@ -55,7 +55,8 @@ class UbicacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $ubicacion = Ubicacion::find($id);
+        return view('ubicacion.show',['ubicacion' => $ubicacion]);
     }
 
     /**
@@ -66,7 +67,8 @@ class UbicacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ubicacion = Ubicacion::find($id);
+        return view('ubicacion.edit',['ubicacion' => $ubicacion]);
     }
 
     /**
@@ -78,7 +80,15 @@ class UbicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'ubicacion'=>'required',
+            'capacidad' => 'required'
+        ]);
+        $ubicacion = Ubicacion::find($id);
+        $ubicacion->nombreUbicacion = $request->ubicacion;
+        $ubicacion->capacidadUbicacion = $request->capacidad;
+        $ubicacion->save();
+        return redirect()->route('ubicacion.index')->with('success','Ubicacion Creado');
     }
 
     /**
@@ -89,6 +99,8 @@ class UbicacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ubicacion = Ubicacion::find($id);
+        $ubicacion->delete();
+        return redirect()->route('ubicacion.index')->with('success','Ubicacion Eliminado');
     }
 }
