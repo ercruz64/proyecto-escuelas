@@ -19,6 +19,7 @@
             <a class="nav-link active" href="{{ route('aprendiz.index') }}">Aprendices</a>
             <a class="nav-link active" href="{{ route('curso') }}">Cursos</a>
             <a class="nav-link active" href="{{ route('aprendizcurso.index') }}">Asignar Cursos</a>
+            <a class="nav-link active" href="{{ route('ubicacion.index') }}">Ubicaciones</a>
         </div>
     </div>
 </div>
