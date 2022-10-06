@@ -5,6 +5,7 @@ use App\Http\Controllers\CursosController;
 use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\AprendizCursoController;
 use App\Http\Controllers\UbicacionController;
+use App\Http\Controllers\EquipoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::delete('/curso/{id}',[CursosController::class, 'destroy'])->name('curso-d
 Route::resource('aprendiz', AprendizController::class);
 Route::resource('aprendizcurso', AprendizCursoController::class);
 Route::resource('ubicacion', UbicacionController::class);
+Route::resource('equipo', EquipoController::class);
 
 
 
